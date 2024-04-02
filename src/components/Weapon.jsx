@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const Weapon = ({ weapon }) => {
-  console.log(weapon.thumbnail);
+const Weapon = ({ weapon, add }) => {
+  const [currentWeapon, setCurrentWeapon]= useState(weapon);
+
   const style = {
-    backgroundImage: `url(${weapon.thumbnail})`,
-    height: '34.5px',
-    width: '60px',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-    margin: '1%'
+    backgroundImage: `url(${weapon.thumbnail})`
+  }
+
+  const onWeaponClick = function () {
+    add(currentWeapon);
   }
   return (
-    <div style={ style }></div>
+    <div className="weapon" style={ style } onClick={onWeaponClick}></div>
   )
 };
 
