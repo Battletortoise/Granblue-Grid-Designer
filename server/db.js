@@ -14,7 +14,7 @@ database.connect()
     console.log(`Connected to MVP database`);
   })
   .catch((err) => {
-    console.err('Error connect to Postgresql database', err);
+    console.error('Error connect to Postgresql database', err);
   });
 
 module.exports = database;

@@ -50,7 +50,7 @@ const App = () => {
     <div className="appContainer">
       <WeaponList weapons={windWeapons} addWeapon={addToGrid}/>
       <Grid grid={grid} mainHand={mainHand} removeMH={removeMainHand} removeWeapon={removeFromGrid}/>
-      <GridValues />
+      <GridValues grid={grid}/>
     </div>
   )
 };
