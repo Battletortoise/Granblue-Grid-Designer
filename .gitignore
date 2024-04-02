@@ -1,0 +1,6 @@
+node_modules
+.env
+dist/bundle.js
+dist/index.html
+dist/main.js
+dist/bundle.js.LICENSE.txt
