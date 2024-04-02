@@ -11,7 +11,6 @@ const constructGridValues = (mainHand, grid, gridValues, setDisplayValues) => {
         HAS(grid[i], gridValues);
       };
     };
-    console.log(gridValues);
   }
 };
 
