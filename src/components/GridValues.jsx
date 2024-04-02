@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import weaponSkills from '../data/weaponSkills.js';
 import VWS from '../data/variableWeaponSkills.js';
 import newGridStates from '../data/newGridState.js';
+import constructGridValues from '../utils/constructGridValues.js';
 
-const GridValues = ({ grid }) => {
-  const [gridValues, setGridValues] = useState(structuredClone(newGridStates));
+const GridValues = ({ grid, mainHand }) => {
+  const [gridValues, setGridValues] = useState({});
+  const [display, setDisplay] = useState({});
 
-  let skillValues = {"attack": 0, "crit": 0}
-  for (var i = 0; i < grid.length; i ++) {
+  const setDisplayValues = (displayValues) => {
+    setDisplay(displayValues);
+  };
 
-  }
+  // constructGridValues(mainHand, grid, gridValues, setDisplayValues);
 
+  useEffect(() => {
+    setGridValues(structuredClone(newGridStates));
+    constructGridValues(mainHand, grid, gridValues, setDisplayValues);
+  }, [grid, mainHand]);
 
 
   return (

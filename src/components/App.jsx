@@ -15,6 +15,7 @@ const App = () => {
 
   //Grid functions
   const addToGrid = (weapon) => {
+    console.log(windWeapons);
     if (Object.keys(mainHand).length === 0) {
       setMainHand(weapon);
     } else if (grid.length <= 8) {
@@ -22,7 +23,6 @@ const App = () => {
       oldGrid.push(weapon);
       setGrid(oldGrid);
     }
-    console.log(mainHand, grid);
   };
   const removeFromGrid = (weapon) => {
     setAwaitWeaponChange(false);
@@ -50,7 +50,7 @@ const App = () => {
     <div className="appContainer">
       <WeaponList weapons={windWeapons} addWeapon={addToGrid}/>
       <Grid grid={grid} mainHand={mainHand} removeMH={removeMainHand} removeWeapon={removeFromGrid}/>
-      <GridValues grid={grid}/>
+      <GridValues grid={grid} mainHand={mainHand}/>
     </div>
   )
 };
