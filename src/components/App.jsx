@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import WeaponList from './WeaponList.jsx';
+import GridValues from './GridValues.jsx';
+import Grid from './Grid.jsx';
 import axios from 'axios';
 
 const App = () => {
@@ -8,6 +10,8 @@ const App = () => {
   //Grid States
   const [grid, setGrid] = useState([]);
   const [mainHand, setMainHand] = useState({});
+  //Quality Control States
+  const [awaitWeaponChange, setAwaitWeaponChange] = useState(true);
 
   //Grid functions
   const addToGrid = (weapon) => {
@@ -19,6 +23,16 @@ const App = () => {
       setGrid(oldGrid);
     }
     console.log(mainHand, grid);
+  };
+  const removeFromGrid = (weapon) => {
+    setAwaitWeaponChange(false);
+    let index = grid.indexOf(weapon);
+    let newGrid = grid.slice(0, index).concat(grid.slice(index+1));
+    setGrid(newGrid);
+    setAwaitWeaponChange(true);
+  };
+  const removeMainHand = () => {
+    setMainHand({});
   }
 
   useEffect(() => {
@@ -33,8 +47,10 @@ const App = () => {
 
 
   return (
-    <div>
-      <WeaponList weapons={windWeapons} add={addToGrid}/>
+    <div className="appContainer">
+      <WeaponList weapons={windWeapons} addWeapon={addToGrid}/>
+      <Grid grid={grid} mainHand={mainHand} removeMH={removeMainHand} removeWeapon={removeFromGrid}/>
+      <GridValues />
     </div>
   )
 };

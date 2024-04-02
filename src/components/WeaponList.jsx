@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Weapon from './Weapon.jsx';
 
-const WeaponList = ({ weapons, add }) => {
+const WeaponList = ({ weapons, addWeapon }) => {
   return (
-    <div className="weaponList">
+    <ul className="weaponList">
       {weapons.length > 0 && weapons.map((weapon) => {
-        return <Weapon weapon={weapon} add={add}/>
+        return <Weapon weapon={weapon} changeGrid={addWeapon}/>
       })}
-    </div>
+    </ul>
   )
 };
 

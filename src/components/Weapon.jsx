@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 
-const Weapon = ({ weapon, add }) => {
+const Weapon = ({ weapon, changeGrid }) => {
   const [currentWeapon, setCurrentWeapon]= useState(weapon);
 
   const style = {
     backgroundImage: `url(${weapon.thumbnail})`
   }
 
-  const onWeaponClick = function () {
-    add(currentWeapon);
+  const onWeaponClick = () => {
+    changeGrid(currentWeapon);
   }
   return (
     <div className="weapon" style={ style } onClick={onWeaponClick}></div>
