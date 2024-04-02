@@ -15,7 +15,6 @@ const App = () => {
 
   //Grid functions
   const addToGrid = (weapon) => {
-    console.log(windWeapons);
     if (Object.keys(mainHand).length === 0) {
       setMainHand(weapon);
     } else if (grid.length <= 8) {

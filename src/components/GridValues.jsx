@@ -17,11 +17,18 @@ const GridValues = ({ grid, mainHand }) => {
   useEffect(() => {
     setGridValues(structuredClone(newGridStates));
     constructGridValues(mainHand, grid, gridValues, setDisplayValues);
+    setDisplay(gridValues);
   }, [grid, mainHand]);
 
 
   return (
-    <div className="gridValues">Attack</div>
+    <div className="gridValues">
+      {Object.keys(display).map((key) => {
+        if (display[key] > 0) {
+          return <div>{key}: {display[key]}</div>
+        }
+      })}
+    </div>
   )
 };
 

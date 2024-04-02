@@ -1,5 +1,6 @@
 import weaponSkills from '../data/weaponSkills.js';
 import VWS from '../data/variableWeaponSkills.js';
+import APVW from './addPrimaryVariableWeapon.js';
 
 const omegaTypes = ["ironflame", "oceansoul", "lifetree", "stormwyrm", "knightcode", "mistfall"];
 const normalTypes = ["fire", "water", "earth", "wind", "light", "dark"];
@@ -10,13 +11,8 @@ const HAS = function (weapon, gridValues) {
     if (weapon.size1 === null) {
       let variety = weaponSkills[weapon.w1][weapon.max_level] || weaponSkills[weapon.w1]["value"];
     } else {
-      if (basicSkills.indexOf(weapon.w1) >= 0 && normalTypes.indexOf(weapon.s_type) >= 0) {
-        gridValues[(VWS[weapon.w1].stat + '_N')] += VWS[weapon.w1]["normal"][weapon.size1][weapon.max_level];
-        // console.log(gridValues[(VWS[weapon.w1].stat + '_N')]);
-      } else if (basicSkills.indexOf(weapon.w1) >= 0 && omegaTypes.indexOf(weapon.s_type) >= 0) {
-        gridValues[(VWS[weapon.w1].stat + '_O')] += VWS[weapon.w1]["omega"][weapon.size1][weapon.max_level];
-      } else if (basicSkills.indexOf(weapon.w1) >= 0 && weapon.s_type === "ex") {
-        gridValues[(VWS[weapon.w1].stat)] += VWS[weapon.w1]["ex"][weapon.size1][weapon.max_level];
+      if (basicSkills.indexOf(weapon.w1) >= 0) {
+        APVW(weapon, weapon.w1, weapon.size1, gridValues);
       } else if (VWS[weapon.w1]) {
         gridValues[(VWS[weapon.w1].stat)] += VWS[weapon.w1][weapon.size1][weapon.max_level];
       }
