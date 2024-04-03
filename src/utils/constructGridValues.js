@@ -1,6 +1,6 @@
 import HAS from './doesItHaveASkill.js';
 
-const constructGridValues = (mainHand, grid, gridValues, setDisplayValues) => {
+const constructGridValues = (mainHand, grid, gridValues) => {
   if (Object.keys(gridValues).length > 0) {
 
     if (Object.keys(mainHand).length > 0) {

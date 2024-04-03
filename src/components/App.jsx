@@ -10,8 +10,8 @@ const App = () => {
   //Grid States
   const [grid, setGrid] = useState([]);
   const [mainHand, setMainHand] = useState({});
-  //Quality Control States
-  const [awaitWeaponChange, setAwaitWeaponChange] = useState(true);
+  //Quality Control
+  let awaitWeaponChange = true;
 
   //Grid functions
   const addToGrid = (weapon) => {
@@ -24,11 +24,13 @@ const App = () => {
     }
   };
   const removeFromGrid = (weapon) => {
-    setAwaitWeaponChange(false);
-    let index = grid.indexOf(weapon);
-    let newGrid = grid.slice(0, index).concat(grid.slice(index+1));
-    setGrid(newGrid);
-    setAwaitWeaponChange(true);
+    if (awaitWeaponChange) {
+      awaitWeaponChange = false;
+      let index = grid.indexOf(weapon);
+      let newGrid = grid.slice(0, index).concat(grid.slice(index+1));
+      setGrid(newGrid);
+      awaitWeaponChange = true;
+    }
   };
   const removeMainHand = () => {
     setMainHand({});
