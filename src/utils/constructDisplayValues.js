@@ -9,9 +9,9 @@ const constructDisplayValues = (gridValues, setDisplay) => {
   let skills = Object.keys(newDisplay);
   for (var key in newDisplay) {
     if (separateSkills.indexOf(key.slice(0,6)) >= 0) {
-      newDisplay[key].value = gridValues[key];
+      newDisplay[key].value = (Math.floor(gridValues[key]));
     } else {
-      MSA(key, newDisplay, gridValues, 1, 1)
+      MSA(key, newDisplay, gridValues)
     }
   }
   setDisplay(newDisplay);

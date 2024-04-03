@@ -1,13 +1,13 @@
-const MSA = (key, display, gridValues, omegaMod, optimusMod) => {
+const MSA = (key, display, gridValues) => {
   let currentValue = 0;
   if (gridValues[key+'_O'] > 0) {
-    currentValue += (gridValues[key+'_O'] * omegaMod);
+    currentValue += (Math.floor(gridValues[key+'_O'] * 10) / 10);
   }
   if (gridValues[key+'_N'] > 0) {
-    currentValue += (gridValues[key+'_N'] * optimusMod);
+    currentValue += (Math.floor(gridValues[key+'_N'] * 10) / 10);
   }
   if (gridValues[key] > 0) {
-    currentValue += gridValues[key];
+    currentValue += (Math.floor(gridValues[key] * 10) / 10);
   }
   display[key].value = currentValue;
 };

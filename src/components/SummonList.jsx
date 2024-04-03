@@ -4,7 +4,6 @@ import Summon from './miniComponents/Summon.jsx';
 const SummonList = ({ summons, addSummon }) => {
   const summonBoat = [];
   let summonDinghy = [];
-  console.log(summons);
 
   const onSummonClick = (summon) => {
     addSummon(summon);

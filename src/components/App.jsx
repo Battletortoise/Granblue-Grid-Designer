@@ -30,15 +30,13 @@ const App = () => {
     }
   };
   const removeFromGrid = (weapon) => {
-    setTimeout(() => {
-      if (awaitWeaponChange) {
-        setAwaitWeaponChange(false);
-        let index = grid.indexOf(weapon);
-        let newGrid = grid.slice(0, index).concat(grid.slice(index+1));
-        setGrid(newGrid);
-        setAwaitWeaponChange(true);
-      }
-    }, 0);
+    if (awaitWeaponChange) {
+      setAwaitWeaponChange(false);
+      let index = grid.indexOf(weapon);
+      let newGrid = grid.slice(0, index).concat(grid.slice(index+1));
+      setGrid(newGrid);
+      setAwaitWeaponChange(true);
+    }
   };
   const removeMainHand = () => {
     setMainHand({});
@@ -91,7 +89,7 @@ const App = () => {
         <WeaponGrid grid={grid} mainHand={mainHand} removeMH={removeMainHand} removeWeapon={removeFromGrid}/>
         <SummonGrid main={mainSummon} subs={subSummons} removeSub={removeSummon} removeMain={removeMainSummon}/>
       </div>
-      <GridValues grid={grid} mainHand={mainHand}/>
+      <GridValues grid={grid} mainHand={mainHand} mainSummon={mainSummon} subSummons={subSummons}/>
     </div>
   )
 };

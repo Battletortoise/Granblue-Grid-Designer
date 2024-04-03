@@ -1,14 +1,14 @@
-import HAS from './doesItHaveASkill.js';
+import HAS from './haveASkill.js';
 
-const constructGridValues = (mainHand, grid, gridValues) => {
+const constructGridValues = (mainHand, grid, gridValues, mainSummon, subSummon) => {
   if (Object.keys(gridValues).length > 0) {
 
     if (Object.keys(mainHand).length > 0) {
-      HAS(mainHand, gridValues);
+      HAS(mainHand, gridValues, mainSummon, subSummon);
     };
     if (grid.length >= 1) {
       for (var i = 0; i < grid.length; i ++) {
-        HAS(grid[i], gridValues);
+        HAS(grid[i], gridValues, mainSummon, subSummon);
       };
     };
   }
