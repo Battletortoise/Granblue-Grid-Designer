@@ -237,6 +237,11 @@ const VWS = {
         10: 12,
         15: 14.5,
         20: 20
+      },
+      "big": {
+        10: 15,
+        15: 18,
+        20: 20
       }
     },
     "ex": {
@@ -277,6 +282,17 @@ const VWS = {
       20: 1.5,
     },
     "stat": "elementalAttackProgression"
+  },
+  "Restraint": {
+    "small": {
+      10: [2, 2.2],
+      15: [3, 3.5]
+    },
+    "medium": {
+      10: [5, 3.5],
+      15: [6.5, 5]
+    },
+    "stat": ["crit", "DA"]
   },
   "Stamina": {
     "normal": {
