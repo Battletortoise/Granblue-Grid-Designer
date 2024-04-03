@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Weapon from './Weapon.jsx';
+import Weapon from './miniComponents/Weapon.jsx';
 
 const Grid = ({ grid, mainHand, removeWeapon, removeMH }) => {
   const [might, setMight] = useState(0);

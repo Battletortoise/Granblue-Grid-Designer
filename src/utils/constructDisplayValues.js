@@ -14,7 +14,6 @@ const constructDisplayValues = (gridValues, setDisplay) => {
       MSA(key, newDisplay, gridValues, 1, 1)
     }
   }
-  console.log(newDisplay);
   setDisplay(newDisplay);
 };
 

@@ -283,6 +283,17 @@ const VWS = {
     },
     "stat": "elementalAttackProgression"
   },
+  "Restraint": {
+    "small": {
+      10: [2, 2.2],
+      15: [3, 3.5]
+    },
+    "medium": {
+      10: [5, 3.5],
+      15: [6.5, 5]
+    },
+    "stat": ["crit", "DA"]
+  },
   "Stamina": {
     "normal": {
       "medium": {

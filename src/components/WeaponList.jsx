@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Weapon from './Weapon.jsx';
+import Weapon from './miniComponents/Weapon.jsx';
 
 const WeaponList = ({ weapons, addWeapon }) => {
   const weaponBoat = [];

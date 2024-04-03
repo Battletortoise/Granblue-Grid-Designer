@@ -5,8 +5,10 @@ import Grid from './Grid.jsx';
 import axios from 'axios';
 
 const App = () => {
-  //Weapon States
+  //Weapons States
   const [windWeapons, setWindWeapons] = useState([]);
+  //Summons
+  const [summons, setSummons] = useState([]);
   //Grid States
   const [grid, setGrid] = useState([]);
   const [mainHand, setMainHand] = useState({});
@@ -37,9 +39,14 @@ const App = () => {
   }
 
   useEffect(() => {
-    axios.get('/wind')
-      .then((response) => {
-        setWindWeapons(response.data);
+    Promise.all([
+      axios.get('/wind'),
+      axios.get('/summons')
+    ])
+      .then(([windWeapons, summons]) => {
+        setWindWeapons(windWeapons.data);
+        setSummons(summons.data);
+        console.log(summons.data);
       })
       .catch((err) => {
         console.error('Error retrieving from the database ', err);

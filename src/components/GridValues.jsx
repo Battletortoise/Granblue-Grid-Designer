@@ -20,7 +20,6 @@ const GridValues = ({ grid, mainHand }) => {
     setGridValues(structuredClone(newGridStates));
     constructGridValues(mainHand, grid, gridValues);
     setFinalGridValues(gridValues);
-    console.log(display);
   }, [grid, mainHand]);
 
   useEffect(() => {
@@ -34,7 +33,7 @@ const GridValues = ({ grid, mainHand }) => {
     <div className="gridValues">
       {Object.keys(display).map((key) => {
         if (display[key].value > 0) {
-          return <div><img src={display[key].thumbnail}></img>{display[key].value}</div>
+          return <div><img src={display[key].thumbnail}></img>{display[key].value}%</div>
         }
       })}
     </div>
