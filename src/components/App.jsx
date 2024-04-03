@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import WeaponList from './WeaponList.jsx';
 import GridValues from './GridValues.jsx';
+import SummonList from './SummonList.jsx';
 import Grid from './Grid.jsx';
 import axios from 'axios';
 
@@ -56,7 +57,12 @@ const App = () => {
 
   return (
     <div className="appContainer">
-      <WeaponList weapons={windWeapons} addWeapon={addToGrid}/>
+      <div className="list">
+        <h3>Weapons</h3>
+        <WeaponList weapons={windWeapons} addWeapon={addToGrid}/>
+        <h3>Summons</h3>
+        <SummonList summons={summons} />
+      </div>
       <Grid grid={grid} mainHand={mainHand} removeMH={removeMainHand} removeWeapon={removeFromGrid}/>
       <GridValues grid={grid} mainHand={mainHand}/>
     </div>
