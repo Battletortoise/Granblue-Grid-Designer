@@ -1,14 +1,17 @@
 import React, {useState} from 'react';
 
-const Summon = ({ summon }) => {
+const Summon = ({ summon, click }) => {
   const [currentSummon, setCurrentSummon] = useState(summon);
 
   const style = {
     backgroundImage: `url(${summon.thumbnail})`
   };
+  const onSummonClick = () => {
+    click(currentSummon);
+  }
 
   return (
-    <div className="summon" style={ style }></div>
+    <div onClick={onSummonClick} className="summon" style={ style }></div>
   )
 };
 

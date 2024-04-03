@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import Weapon from './miniComponents/Weapon.jsx';
 
-const Grid = ({ grid, mainHand, removeWeapon, removeMH }) => {
-  const [might, setMight] = useState(0);
-  const [omegaMight, setOmegaMight] = useState(0);
-
+const WeaponGrid = ({ grid, mainHand, removeWeapon, removeMH }) => {
 
   const onMainHandClick = () => {
     removeMH();
@@ -14,15 +11,17 @@ const Grid = ({ grid, mainHand, removeWeapon, removeMH }) => {
   };
 
   return (
-    <div className="grid">
+    <div>
       <h2>Main Hand</h2>
       <Weapon weapon={mainHand} changeGrid={onMainHandClick}/>
       <h3>Grid pieces</h3>
-      {grid.map((piece) => {
-        return <Weapon weapon={piece} changeGrid={onGridWeaponClick}/>
-      })}
+      <div className="coreGrid">
+        {grid.map((piece) => {
+          return <Weapon weapon={piece} changeGrid={onGridWeaponClick}/>
+        })}
+      </div>
     </div>
   )
 }
 
-export default Grid;
+export default WeaponGrid;
