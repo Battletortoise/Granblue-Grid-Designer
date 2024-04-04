@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import WeaponList from './WeaponList.jsx';
+import WeaponFilter from './WeaponFilter.jsx';
 import GridValues from './GridValues.jsx';
 import SummonList from './SummonList.jsx';
 import WeaponGrid from './WeaponGrid.jsx';
@@ -21,6 +22,7 @@ const App = () => {
   const [subSummons, setSubSummons] = useState([]);
   //Quality Control
   const [awaitWeaponChange, setAwaitWeaponChange] = useState(true);
+  const [filter, setFilter] = useState('all');
 
   //Grid functions
   const addToGrid = (weapon) => {
@@ -67,6 +69,10 @@ const App = () => {
   const removeFriendSummon = () => {
     setFriendSummon({});
   };
+  //Filter
+  const filterChange = (value) => {
+    setFilter(value);
+  }
 
   //Use Effects
   useEffect(() => {
@@ -91,8 +97,9 @@ const App = () => {
     <div className="appContainer">
       <div className="list">
         <h3>Weapons</h3>
+        <WeaponFilter filterChange={filterChange}/>
         <hr></hr>
-        <WeaponList weapons={allWeapons} addWeapon={addToGrid}/>
+        <WeaponList weapons={allWeapons} addWeapon={addToGrid} filter={filter}/>
         <h3>Summons</h3>
         <hr></hr>
         <SummonList summons={summons} addSummon={addSummon}/>
