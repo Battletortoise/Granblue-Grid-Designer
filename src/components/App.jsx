@@ -9,12 +9,15 @@ import axios from 'axios';
 const App = () => {
   //Weapons States
   const [windWeapons, setWindWeapons] = useState([]);
+  const [lightWeapons, setLightWeapons] = useState([]);
+  const [allWeapons, setAllWeapons] = useState([]);
   //Summons
   const [summons, setSummons] = useState([]);
   //Grid States
   const [grid, setGrid] = useState([]);
   const [mainHand, setMainHand] = useState({});
   const [mainSummon, setMainSummon] = useState({});
+  const [friendSummon, setFriendSummon] = useState({})
   const [subSummons, setSubSummons] = useState([]);
   //Quality Control
   const [awaitWeaponChange, setAwaitWeaponChange] = useState(true);
@@ -45,6 +48,8 @@ const App = () => {
   const addSummon = (summon) => {
     if (Object.keys(mainSummon).length === 0) {
       setMainSummon(summon);
+    } else if (Object.keys(friendSummon).length === 0) {
+      setFriendSummon(summon);
     } else if (subSummons.length <= 3) {
       let oldSubs = subSummons.slice();
       oldSubs.push(summon);
@@ -59,17 +64,22 @@ const App = () => {
   const removeMainSummon = () => {
     setMainSummon({});
   };
+  const removeFriendSummon = () => {
+    setFriendSummon({});
+  };
 
   //Use Effects
   useEffect(() => {
     Promise.all([
       axios.get('/wind'),
+      axios.get('/light'),
       axios.get('/summons')
     ])
-      .then(([windWeapons, summons]) => {
+      .then(([windWeapons, lightWeapons, summons]) => {
         setWindWeapons(windWeapons.data);
+        setLightWeapons(lightWeapons.data);
         setSummons(summons.data);
-        console.log(summons.data);
+        setAllWeapons(windWeapons.data.concat(lightWeapons.data));
       })
       .catch((err) => {
         console.error('Error retrieving from the database ', err);
@@ -81,15 +91,17 @@ const App = () => {
     <div className="appContainer">
       <div className="list">
         <h3>Weapons</h3>
-        <WeaponList weapons={windWeapons} addWeapon={addToGrid}/>
+        <hr></hr>
+        <WeaponList weapons={allWeapons} addWeapon={addToGrid}/>
         <h3>Summons</h3>
+        <hr></hr>
         <SummonList summons={summons} addSummon={addSummon}/>
       </div>
       <div className="grid">
         <WeaponGrid grid={grid} mainHand={mainHand} removeMH={removeMainHand} removeWeapon={removeFromGrid}/>
-        <SummonGrid main={mainSummon} subs={subSummons} removeSub={removeSummon} removeMain={removeMainSummon}/>
+        <SummonGrid main={mainSummon} friend={friendSummon} subs={subSummons} removeSub={removeSummon} removeMain={removeMainSummon} removeFriend={removeFriendSummon}/>
       </div>
-      <GridValues grid={grid} mainHand={mainHand} mainSummon={mainSummon} subSummons={subSummons}/>
+      <GridValues grid={grid} mainHand={mainHand} mainSummon={mainSummon} subSummons={subSummons} friendSummon={friendSummon}/>
     </div>
   )
 };

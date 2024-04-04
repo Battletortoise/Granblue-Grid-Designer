@@ -7,12 +7,19 @@ const omegaTypes = ["ironflame", "oceansoul", "lifetree", "stormwyrm", "knightco
 const normalTypes = ["fire", "water", "earth", "wind", "light", "dark"];
 const basicSkills = ["Might", "Aegis", "Celere", "Stamina"];
 
-const HAS = function (weapon, gridValues, mainSummon, subSummon) {
+const HAS = function (weapon, gridValues, mainSummon, subSummon, friendSummon) {
   let aura = mainSummon.aura;
   let type = mainSummon.type;
 
-  if (weapon.w1 !== null) {
-    if (weapon.size1 === null) {
+  console.log(friendSummon, mainSummon)
+
+  if (friendSummon.type === mainSummon.type) {
+    console.log('its equal');
+    aura += friendSummon.aura;
+  }
+
+  if (weapon.w1 !== 'null') {
+    if (weapon.size1 === 'null' && weaponSkills[weapon.w1]) {
       let variety = weaponSkills[weapon.w1][weapon.max_level] || weaponSkills[weapon.w1]["value"];
       gridValues[weaponSkills[weapon.w1].stat] += variety;
     } else {
@@ -23,8 +30,8 @@ const HAS = function (weapon, gridValues, mainSummon, subSummon) {
       }
     };
   }
-  if (weapon.w2 !== null) {
-    if (weapon.size2 === null) {
+  if (weapon.w2 !== 'null') {
+    if (weapon.size2 === 'null' && weaponSkills[weapon.w2]) {
       let variety = weaponSkills[weapon.w2][weapon.max_level] || weaponSkills[weapon.w2]["value"];
       gridValues[weaponSkills[weapon.w2].stat] += variety;
     } else {
@@ -35,8 +42,8 @@ const HAS = function (weapon, gridValues, mainSummon, subSummon) {
       }
     };
   };
-  if (weapon.w3 !== null) {
-    if (weapon.size3 === null) {
+  if (weapon.w3 !== 'null') {
+    if (weapon.size3 === 'null' && weaponSkills[weapon.w3]) {
       let variety = weaponSkills[weapon.w3][weapon.max_level] || weaponSkills[weapon.w3]["value"];
       gridValues[weaponSkills[weapon.w3].stat] += variety;
     } else {

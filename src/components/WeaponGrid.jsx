@@ -11,7 +11,7 @@ const WeaponGrid = ({ grid, mainHand, removeWeapon, removeMH }) => {
   };
 
   return (
-    <div>
+    <div className="weaponGrid">
       <h2>Main Hand</h2>
       <Weapon weapon={mainHand} changeGrid={onMainHandClick}/>
       <h3>Grid pieces</h3>
