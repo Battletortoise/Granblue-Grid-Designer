@@ -9,6 +9,8 @@ import axios from 'axios';
 const App = () => {
   //Weapons States
   const [windWeapons, setWindWeapons] = useState([]);
+  const [lightWeapons, setLightWeapons] = useState([]);
+  const [allWeapons, setAllWeapons] = useState([]);
   //Summons
   const [summons, setSummons] = useState([]);
   //Grid States
@@ -70,11 +72,14 @@ const App = () => {
   useEffect(() => {
     Promise.all([
       axios.get('/wind'),
+      axios.get('/light'),
       axios.get('/summons')
     ])
-      .then(([windWeapons, summons]) => {
+      .then(([windWeapons, lightWeapons, summons]) => {
         setWindWeapons(windWeapons.data);
+        setLightWeapons(lightWeapons.data);
         setSummons(summons.data);
+        setAllWeapons(windWeapons.data.concat(lightWeapons.data));
       })
       .catch((err) => {
         console.error('Error retrieving from the database ', err);
@@ -86,8 +91,10 @@ const App = () => {
     <div className="appContainer">
       <div className="list">
         <h3>Weapons</h3>
-        <WeaponList weapons={windWeapons} addWeapon={addToGrid}/>
+        <hr></hr>
+        <WeaponList weapons={allWeapons} addWeapon={addToGrid}/>
         <h3>Summons</h3>
+        <hr></hr>
         <SummonList summons={summons} addSummon={addSummon}/>
       </div>
       <div className="grid">
