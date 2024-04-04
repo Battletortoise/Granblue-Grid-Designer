@@ -10,6 +10,7 @@ import axios from 'axios';
 const App = () => {
   //Weapons States
   const [windWeapons, setWindWeapons] = useState([]);
+  const [fireWeapons, setfireWeapons] = useState([]);
   const [lightWeapons, setLightWeapons] = useState([]);
   const [allWeapons, setAllWeapons] = useState([]);
   //Summons
@@ -72,20 +73,30 @@ const App = () => {
   //Filter
   const filterChange = (value) => {
     setFilter(value);
-  }
+  };
+  const resetGrid = () => {
+    setMainHand({});
+    setGrid([]);
+    setMainSummon({});
+    setFriendSummon({});
+    setSubSummons([]);
+  };
 
   //Use Effects
   useEffect(() => {
     Promise.all([
       axios.get('/wind'),
       axios.get('/light'),
+      axios.get('/fire'),
       axios.get('/summons')
     ])
-      .then(([windWeapons, lightWeapons, summons]) => {
+      .then(([windWeapons, lightWeapons, fireWeapons, summons]) => {
+        console.log(fireWeapons.data);
         setWindWeapons(windWeapons.data);
         setLightWeapons(lightWeapons.data);
+        setfireWeapons(fireWeapons.data);
         setSummons(summons.data);
-        setAllWeapons(windWeapons.data.concat(lightWeapons.data));
+        setAllWeapons(windWeapons.data.concat(lightWeapons.data).concat(fireWeapons.data));
       })
       .catch((err) => {
         console.error('Error retrieving from the database ', err);
@@ -105,6 +116,7 @@ const App = () => {
         <SummonList summons={summons} addSummon={addSummon}/>
       </div>
       <div className="grid">
+        <button onClick={resetGrid}>Reset Grid</button>
         <WeaponGrid grid={grid} mainHand={mainHand} removeMH={removeMainHand} removeWeapon={removeFromGrid}/>
         <SummonGrid main={mainSummon} friend={friendSummon} subs={subSummons} removeSub={removeSummon} removeMain={removeMainSummon} removeFriend={removeFriendSummon}/>
       </div>
