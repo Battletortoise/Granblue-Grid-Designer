@@ -294,6 +294,14 @@ const VWS = {
     },
     "stat": ["crit", "DA"]
   },
+  "Sovereign": {
+    "unworldly": {
+      10: 25,
+      15: 33,
+      20: 37
+    },
+    "stat": "attack"
+  },
   "Stamina": {
     "normal": {
       "medium": {

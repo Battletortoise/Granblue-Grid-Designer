@@ -15,6 +15,7 @@ const App = () => {
   const [grid, setGrid] = useState([]);
   const [mainHand, setMainHand] = useState({});
   const [mainSummon, setMainSummon] = useState({});
+  const [friendSummon, setFriendSummon] = useState({})
   const [subSummons, setSubSummons] = useState([]);
   //Quality Control
   const [awaitWeaponChange, setAwaitWeaponChange] = useState(true);
@@ -45,6 +46,8 @@ const App = () => {
   const addSummon = (summon) => {
     if (Object.keys(mainSummon).length === 0) {
       setMainSummon(summon);
+    } else if (Object.keys(friendSummon).length === 0) {
+      setFriendSummon(summon);
     } else if (subSummons.length <= 3) {
       let oldSubs = subSummons.slice();
       oldSubs.push(summon);
@@ -59,6 +62,9 @@ const App = () => {
   const removeMainSummon = () => {
     setMainSummon({});
   };
+  const removeFriendSummon = () => {
+    setFriendSummon({});
+  };
 
   //Use Effects
   useEffect(() => {
@@ -69,7 +75,6 @@ const App = () => {
       .then(([windWeapons, summons]) => {
         setWindWeapons(windWeapons.data);
         setSummons(summons.data);
-        console.log(summons.data);
       })
       .catch((err) => {
         console.error('Error retrieving from the database ', err);
@@ -87,9 +92,9 @@ const App = () => {
       </div>
       <div className="grid">
         <WeaponGrid grid={grid} mainHand={mainHand} removeMH={removeMainHand} removeWeapon={removeFromGrid}/>
-        <SummonGrid main={mainSummon} subs={subSummons} removeSub={removeSummon} removeMain={removeMainSummon}/>
+        <SummonGrid main={mainSummon} friend={friendSummon} subs={subSummons} removeSub={removeSummon} removeMain={removeMainSummon} removeFriend={removeFriendSummon}/>
       </div>
-      <GridValues grid={grid} mainHand={mainHand} mainSummon={mainSummon} subSummons={subSummons}/>
+      <GridValues grid={grid} mainHand={mainHand} mainSummon={mainSummon} subSummons={subSummons} friendSummon={friendSummon}/>
     </div>
   )
 };

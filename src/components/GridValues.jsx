@@ -5,7 +5,7 @@ import newGridStates from '../data/newGridState.js';
 import constructGridValues from '../utils/constructGridValues.js';
 import constructDisplayValues from '../utils/constructDisplayValues.js';
 
-const GridValues = ({ grid, mainHand, mainSummon, subSummons }) => {
+const GridValues = ({ grid, mainHand, mainSummon, subSummons, friendSummon }) => {
   const [gridValues, setGridValues] = useState({});
   const [finalGridValues, setFinalGridValues] = useState({});
   const [display, setDisplay] = useState({});
@@ -14,20 +14,11 @@ const GridValues = ({ grid, mainHand, mainSummon, subSummons }) => {
     setDisplay(displayValues);
   };
 
-  // constructGridValues(mainHand, grid, gridValues, setDisplayValues);
-
   useEffect(() => {
     setGridValues(structuredClone(newGridStates));
-    constructGridValues(mainHand, grid, gridValues, mainSummon, subSummons);
+    constructGridValues(mainHand, grid, gridValues, mainSummon, subSummons, friendSummon);
     constructDisplayValues(gridValues, setDisplayValues);
-  }, [grid, mainHand, mainSummon, subSummons]);
-
-  // useEffect(() => {
-  //   if (Object.keys(finalGridValues).length > 0) {
-  //     constructDisplayValues(finalGridValues, setDisplayValues);
-  //   }
-  // }, [finalGridValues])
-
+  }, [grid, mainHand, mainSummon, subSummons, friendSummon]);
 
   return (
     <div className="gridValues">
