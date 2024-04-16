@@ -11,10 +11,7 @@ const HAS = function (weapon, gridValues, mainSummon, subSummon, friendSummon) {
   let aura = mainSummon.aura;
   let type = mainSummon.type;
 
-  console.log(friendSummon, mainSummon)
-
   if (friendSummon.type === mainSummon.type) {
-    console.log('its equal');
     aura += friendSummon.aura;
   }
 

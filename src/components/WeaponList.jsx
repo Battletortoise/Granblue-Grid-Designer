@@ -7,14 +7,17 @@ const WeaponList = ({ weapons, addWeapon }) => {
 
   for (var i = 0; i < weapons.length; i++) {
     weaponDinghy.push(<Weapon weapon={weapons[i]} changeGrid={addWeapon}/>);
-    if ((i+1) % 5 === 0 || i+1 === weapons.length) {
+    if (weaponDinghy.length === 5 || i+1 === weapons.length) {
+      console.log(weaponDinghy, weaponBoat);
       weaponBoat.push(<div className="weaponBoat">{weaponDinghy}</div>);
       weaponDinghy = [];
     }
   }
   return (
     <ul className="weaponList">
-      {weaponBoat}
+      {weapons.map((weapon) => {
+        return <Weapon weapon={weapon} changeGrid={addWeapon}/>
+      })}
     </ul>
   )
 };

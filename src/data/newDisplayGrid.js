@@ -168,6 +168,10 @@ const newDisplayGrid = {
     value: 0,
     thumbnail: "https://gbf.wiki/images/thumb/e/e0/02_icon_def.png/100px-02_icon_def.png"
   },
+  "garrison": {
+    value: 0,
+    thumbnail: "https://gbf.wiki/images/thumb/e/e0/02_icon_def.png/100px-02_icon_def.png"
+  },
   "debuffRes": {
     value: 0,
     thumbnail: "https://gbf.wiki/images/thumb/9/9c/Book_bonus_label_l_16.png/100px-Book_bonus_label_l_16.png"
