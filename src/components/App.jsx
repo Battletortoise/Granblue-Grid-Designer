@@ -13,6 +13,7 @@ const App = () => {
   const [fireWeapons, setfireWeapons] = useState([]);
   const [lightWeapons, setLightWeapons] = useState([]);
   const [allWeapons, setAllWeapons] = useState([]);
+  const [displayWeapons, setDisplayWeapons] = useState([]);
   //Summons
   const [summons, setSummons] = useState([]);
   //Grid States
@@ -74,6 +75,7 @@ const App = () => {
   const filterChange = (value) => {
     setFilter(value);
   };
+  
   const resetGrid = () => {
     setMainHand({});
     setGrid([]);
@@ -91,18 +93,29 @@ const App = () => {
       axios.get('/summons')
     ])
       .then(([windWeapons, lightWeapons, fireWeapons, summons]) => {
-        console.log(fireWeapons.data);
         setWindWeapons(windWeapons.data);
         setLightWeapons(lightWeapons.data);
         setfireWeapons(fireWeapons.data);
         setSummons(summons.data);
         setAllWeapons(windWeapons.data.concat(lightWeapons.data).concat(fireWeapons.data));
+        setDisplayWeapons(windWeapons.data.concat(lightWeapons.data).concat(fireWeapons.data));
       })
       .catch((err) => {
         console.error('Error retrieving from the database ', err);
       })
   }, []);
 
+  useEffect(() => {
+    if (filter === 'fire') {
+      setDisplayWeapons(fireWeapons);
+    } else if (filter === 'wind') {
+      setDisplayWeapons(windWeapons);
+    } else if (filter === 'light') {
+      setDisplayWeapons(lightWeapons);
+    } else if (filter === 'all') {
+      setDisplayWeapons(allWeapons);
+    };
+  }, [filter])
 
   return (
     <div className="appContainer">
@@ -110,7 +123,7 @@ const App = () => {
         <h3>Weapons</h3>
         <WeaponFilter filterChange={filterChange}/>
         <hr></hr>
-        <WeaponList weapons={allWeapons} addWeapon={addToGrid} filter={filter}/>
+        <WeaponList weapons={displayWeapons} addWeapon={addToGrid}/>
         <h3>Summons</h3>
         <hr></hr>
         <SummonList summons={summons} addSummon={addSummon}/>
